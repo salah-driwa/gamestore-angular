@@ -1,0 +1,52 @@
+import { Component, Input } from '@angular/core';
+import { Game } from 'src/app/models';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+@Component({
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.css'],
+  animations: [
+    trigger('scaleOnHover', [
+      state('initial', style({ transform: 'scale(1)' })),
+      state('hovered', style({ transform: 'scale(1.03)' })),
+      transition('initial => hovered', animate('180ms ease-in')),
+      transition('hovered => initial', animate('20ms ease-out')),
+    ]),
+    trigger('carousel', [
+      state('void', style({ opacity: 0 })),
+      state('*', style({ opacity: 1 })),
+      transition('void <=> *', animate('300ms ease-in-out'))
+    ])
+  
+  ],
+})
+export class CardComponent {
+  @Input() game: Game | null = null;
+  @Input() cardIndex: number = 0;
+  hoverState: 'initial' | 'hovered' = 'initial';
+  zIndex = 0; // 
+  currentScreenshotIndex: number = 0;
+  constructor() {
+    this.hoverState = 'initial';
+    
+   
+  }
+  // Other component logic
+  onHover(game: Game) {
+    game.hoverState = 'hovered';
+    this.zIndex = 10;
+    // Set it to 'initial' in the constructor 
+   //console.log(this.game?.ratings); 
+   
+  }
+
+  onLeave(game: Game) {
+    game.hoverState = 'initial';
+    this.zIndex = 0;
+  }
+  setimageindex(i:number){
+    this.currentScreenshotIndex= i;
+  }
+ 
+
+}

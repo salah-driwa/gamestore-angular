@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class=" bg-background">
+    <div class=" p-3">
+        <mat-form-field>
+            <mat-label>Sort</mat-label>
+            <mat-select 
+            panelClass="sort-select" 
+            [(ngModel)]="sort"
+            (selectionChange)="searchGames(sort)">
+                 <mat-option value="name">Name</mat-option>
+                 <mat-option value="-relased">Released</mat-option>
+                 <mat-option value="-added">Added</mat-option>
+                 <mat-option value="-created">Created</mat-option>
+                 <mat-option value="-upldated">Updated</mat-option>
+                 <mat-option value="-rating">Rating</mat-option>
+                 <mat-option value="metacritic">Metacritic</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    
+<div class=" flex   flex-wrap  justify-center    2xl:mx-10">
+    <ng-container *ngFor="let game of games "  class=" " >
+        <app-card [game]="game"></app-card>
+     
+        
+    </ng-container>
+<!-- app.component.html -->
+
+  
+        
+</div>
+
+
+</div>
