@@ -2,6 +2,7 @@
 
 export interface Game { 
     background_image: string;
+    id: string;
     name: string; 
     released:  string;
     metacritic_url: string;
@@ -14,7 +15,8 @@ export interface Game {
     ratings: Array<Rating>;
     short_screenshots: Array <Short_screenshot>;
      trailers: Array<Trailer>;
-     hoverState: 'initial' | 'hovered'; // Add this property
+     hoverState: 'initial' | 'hovered';
+      // Add this property
 
 }
 export interface APIResponse<T> { 

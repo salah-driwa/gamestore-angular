@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpheaderInterceptor } from './interceptors/http-header.interceptors';
 import { HttpErrorsInterceptor } from './interceptors/http-errors.interceptors';
 import { CardComponent } from './components/card/card.component';
+import { DetailsComponent } from './components/details/details.component';
 
 
 
@@ -26,7 +27,8 @@ import { CardComponent } from './components/card/card.component';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    CardComponent
+    CardComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

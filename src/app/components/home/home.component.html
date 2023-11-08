@@ -21,7 +21,7 @@
     
 <div class=" flex   flex-wrap  justify-center    2xl:mx-10">
     <ng-container *ngFor="let game of games "  class=" " >
-        <app-card [game]="game"></app-card>
+        <app-card [game]="game" [openGameDetails]="openGameDetail" [router]="router"></app-card>
      
         
     </ng-container>

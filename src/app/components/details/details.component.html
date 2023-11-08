@@ -1,0 +1,59 @@
+<div class="details bg-background">
+    <div class="  h-[80vh] relative ">
+      <div class='absolute w-full  h-full  bg-gradient-to-t  top-2 from-background z-10 '></div>
+      <div class='absolute w-full  h-full  bg-gradient-to-b  from-background z-10  opacity-50'></div>
+    
+       <img *ngIf="!game?.trailers?.length"
+        class="  relative h-full  w-full object-cover  bg-cover  z-0    opacity-40"
+        src="{{ game?.background_image }}"
+        alt="background image"
+      />
+      <div *ngIf="game?.trailers?.length" >
+
+        <video class="h-full  w-full relative object-cover  bg-cover" controls  autoplay  *ngFor="let trailer of game?.trailers"    [muted]="'muted'">
+          <source src="{{trailer.data.max}}" type="video/mp4"  />
+         
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+      
+    </div>
+    <div class="game-content z-20">
+      <div class="details-wrapper">
+        <div class="game-header">
+          <h1 class="game-header-title">{{ game?.name }}</h1>
+          <h2 class="game-header-release-date">
+            Release: {{ game?.released | date }}
+            
+          </h2>
+          <p class="game-header-genres">
+            <span *ngFor="let genre of game?.genres; let last = last"
+            >{{ genre.name }}<span *ngIf="!last">, </span></span
+          >
+          </p>
+          <div class="game-gauge">
+            <mwl-gauge
+            class="two"
+            [max]="100"
+            [dialStartAngle]="180"
+            [dialEndAngle]="0"
+            [value]="gameRating"
+            [animated]="true"
+            [color]="getColor"
+            [animationDuration]="2"
+          >
+          </mwl-gauge>
+            <a
+              class="game-gauge-label"
+              target="_blank"
+              href="{{ game?.metacritic_url }}"
+              >Metacritic</a
+            >
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Game } from 'src/app/models';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -23,20 +24,25 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class CardComponent {
   @Input() game: Game | null = null;
   @Input() cardIndex: number = 0;
+  @Input() openGameDetails: ((id: string) => void ) =(id: string) => {};;
+  @Input() router: Router | undefined;
   hoverState: 'initial' | 'hovered' = 'initial';
   zIndex = 0; // 
   currentScreenshotIndex: number = 0;
+  public idType: string | undefined;
+
+  // In your constructor or wherever appropriate
+ 
   constructor() {
     this.hoverState = 'initial';
-    
-   
   }
   // Other component logic
   onHover(game: Game) {
     game.hoverState = 'hovered';
     this.zIndex = 10;
     // Set it to 'initial' in the constructor 
-   //console.log(this.game?.ratings); 
+   // console.log(`The type of game?.id is: ${typeof this.game?.id}`);
+
    
   }
 
@@ -47,6 +53,10 @@ export class CardComponent {
   setimageindex(i:number){
     this.currentScreenshotIndex= i;
   }
- 
+  openGamecardDetail(id:string):void{
+    if (this.router) {
+      this.router.navigate(['details', id]);
+    }
+}
 
 }
