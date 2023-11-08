@@ -13,6 +13,8 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent {
  public sort: string;
+ public platform :string;
+ public genres : string ;
  public games: Array<Game>;
  private routeSub: Subscription= new Subscription();
  private gameSub: Subscription = new Subscription();
@@ -25,6 +27,8 @@ export class HomeComponent {
   
   this.sort = '';
   this.games = [];
+ this.platform= '';
+ this.genres = '';
    // Initialize with an empty string or an appropriate default value
 
  
@@ -36,10 +40,8 @@ export class HomeComponent {
 ngOnInit(): void{
   this.activatedRoute.params.subscribe((params:Params)=>{
 
-    if(params['game-search']
-    ){
-      this.searchGames('metacrit',params['game-search']
-            )      ;
+    if(params['game-search'] ){
+      this.searchGames('metacrit',params['game-search']  )      ;
      
     }else{
       this.searchGames('metacrit');
@@ -51,13 +53,12 @@ ngOnInit(): void{
 
 }
 
-
-searchGames(sort: string, search?: string): void {
+searchGames(sort: string, platform?: string, genres?: string, search?: string): void {
+  // Construct the API request based on the selected options
   this.gameSub = this.httpService
-    .getGameList(sort, search? search : '')
+    .getGameList(sort, platform? platform : '', genres? genres : '', search? search : '')
     .subscribe((gameList: APIResponse<Game>) => {
       this.games = gameList.results;
-      console.log(search);
     });
 }
 

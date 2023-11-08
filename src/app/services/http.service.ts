@@ -17,13 +17,22 @@ export class HttpService {
    
   getGameList(
     ordering: string,
-    search: string
+    platform: string,
+     genres: string,
+    search: string ,
   ): Observable<APIResponse<Game>> {
-    let params = new HttpParams().set('ordering', ordering);
+    let params = new HttpParams()
+  .set('ordering', ordering)
+  .set('search', search)
+  .set('metacritic', '60,100');
 
-    if (search) {
-      params = new HttpParams().set('ordering', ordering).set('search', search);
-      console.log(search)
+    
+    if (platform) {
+      params = params.set('parent_platforms', platform);
+    }
+    
+    if (genres) {
+      params = params.set('genres', genres);
     }
 
     return this.http.get<APIResponse<Game>>(`${env.BASE_URL}/games`, {

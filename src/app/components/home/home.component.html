@@ -1,22 +1,50 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <div class=" bg-background">
-    <div class=" p-3">
+    <div class=" flex gap-3 p-3">
         <mat-form-field>
             <mat-label>Sort</mat-label>
-            <mat-select 
-            panelClass="sort-select" 
-            [(ngModel)]="sort"
-            (selectionChange)="searchGames(sort)">
-                 <mat-option value="name">Name</mat-option>
-                 <mat-option value="-relased">Released</mat-option>
-                 <mat-option value="-added">Added</mat-option>
-                 <mat-option value="-created">Created</mat-option>
-                 <mat-option value="-upldated">Updated</mat-option>
-                 <mat-option value="-rating">Rating</mat-option>
-                 <mat-option value="metacritic">Metacritic</mat-option>
+            <mat-select panelClass="sort-select" [(ngModel)]="sort" (selectionChange)="searchGames(sort, platform, genres)">
+              <mat-option value="name">Name</mat-option>
+              <mat-option value="-released">Released</mat-option>
+              <mat-option value="-added">Added</mat-option>
+              <mat-option value="-created">Created</mat-option>
+              <mat-option value="-updated">Updated</mat-option>
+              <mat-option value="-rating">Rating</mat-option>
+              <mat-option value="metacritic">Metacritic</mat-option>
             </mat-select>
-        </mat-form-field>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Platform</mat-label>
+            <mat-select panelClass="sort-select" [(ngModel)]="platform" (selectionChange)="searchGames(sort, platform, genres)">
+              <mat-option value="1">PC</mat-option>
+              <mat-option value="2">PlayStation</mat-option>
+              <mat-option value="3">Xbox </mat-option>
+              <mat-option value="4">iOS</mat-option>
+              <mat-option value="8">Android</mat-option>
+              <!-- Add more platform options as needed -->
+            </mat-select>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Genres</mat-label>
+            <mat-select panelClass="sort-select" [(ngModel)]="genres" (selectionChange)="searchGames(sort, platform, genres)">
+              <mat-option value="4">Action</mat-option>
+              <mat-option value="3">Adventure</mat-option>
+              <mat-option value="51">Indie</mat-option>
+              <mat-option value="5">RPG</mat-option>
+              <mat-option value="2">Shooter</mat-option>
+              <mat-option value="10">Strategy</mat-option>
+              <mat-option value="14">Simulation</mat-option>
+              <mat-option value="83">Platformer</mat-option>
+              <mat-option value="59">Multiplayer</mat-option>
+
+
+              <!-- Add more genre options as needed -->
+            </mat-select>
+          </mat-form-field>
+          
     </div>
     
 <div class=" flex   flex-wrap  justify-center    2xl:mx-10">
