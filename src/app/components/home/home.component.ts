@@ -43,8 +43,8 @@ ngOnInit(): void{
   this.activatedRoute.params.subscribe((params:Params)=>{
 
     if(params['game-search'] ){
-      this.searchGames('metacrit',params['game-search']  )      ;
-     
+      this.searchGames('metacrit',this.platform,this.genres,params['game-search'] )      ;
+    
     }else{
       this.searchGames('metacrit');
     }

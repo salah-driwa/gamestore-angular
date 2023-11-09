@@ -22,17 +22,19 @@ export class HttpService {
     search: string ,
   ): Observable<APIResponse<Game>> {
     let params = new HttpParams()
-  .set('ordering', ordering)
-  .set('search', search)
-  .set('metacritic', '60,100');
+  .set('ordering', ordering).set('metacritic', '60,100');
 
-    
+
     if (platform) {
       params = params.set('parent_platforms', platform);
     }
     
     if (genres) {
       params = params.set('genres', genres);
+    }
+    console.log(search)
+    if (search){
+      params = params.set('search', search);
     }
 
     return this.http.get<APIResponse<Game>>(`${env.BASE_URL}/games`, {
