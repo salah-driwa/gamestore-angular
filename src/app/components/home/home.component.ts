@@ -19,7 +19,7 @@ export class HomeComponent {
  private routeSub: Subscription= new Subscription();
  private gameSub: Subscription = new Subscription();
 
-
+ public loader = true ;
 
  constructor(private httpService: HttpService,
   public router: Router,
@@ -30,7 +30,9 @@ export class HomeComponent {
  this.platform= '';
  this.genres = '';
    // Initialize with an empty string or an appropriate default value
-
+   setTimeout(() => {
+    this.loader = false;
+  }, 1500);
  
    }
    

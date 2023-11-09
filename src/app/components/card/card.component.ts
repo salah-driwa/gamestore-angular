@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit  } from '@angular/core';
 import { Game } from 'src/app/models';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
   
   ],
 })
-export class CardComponent {
+export class CardComponent  implements OnInit{
   @Input() game: Game | null = null;
   @Input() cardIndex: number = 0;
   @Input() openGameDetails: ((id: string) => void ) =(id: string) => {};;
@@ -31,8 +31,14 @@ export class CardComponent {
   currentScreenshotIndex: number = 0;
   public idType: string | undefined;
 
+
+
+    ngOnInit():void{
+
+    }
+
   // In your constructor or wherever appropriate
- 
+  
   constructor() {
     this.hoverState = 'initial';
   }

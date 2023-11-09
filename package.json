@@ -24,6 +24,7 @@
     "angular-gauge": "^5.0.0",
     "font-awesome": "^4.7.0",
     "framer-motion": "^10.16.4",
+    "ngx-skeleton-loader": "^8.1.0",
     "react": "^18.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

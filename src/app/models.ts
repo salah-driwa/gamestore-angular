@@ -15,6 +15,7 @@ export interface Game {
     ratings: Array<Rating>;
     short_screenshots: Array <Short_screenshot>;
      trailers: Array<Trailer>;
+  
      hoverState: 'initial' | 'hovered';
       // Add this property
 

@@ -12,14 +12,16 @@
 >
     <div>
       <div class="h-fit z-0 relative">
-        <img class="object-cover rounded-xl rounded-b-none h-52 w-full  z-0" *ngIf="game?.background_image && game?.hoverState !== 'hovered' " [src]="game?.background_image" alt="thumbnail" />
+        <!-- skeleton.component.html -->
+        
+             <img  [loading]="'lazy'" class="object-cover rounded-xl rounded-b-none h-52 w-full  z-0" *ngIf="game?.background_image && game?.hoverState !== 'hovered'" [src]="game?.background_image" alt="thumbnail" />
        
         <div *ngIf=" game?.hoverState === 'hovered' " >
           
        <div [@carousel]="currentScreenshotIndex" class="relative h-52 w-full">
   <ng-container *ngFor="let screenshot of game?.short_screenshots; let i = index">
     <div *ngIf="i === currentScreenshotIndex">
-       <img class="object-cover rounded-xl rounded-b-none h-52 w-full z-0" [src]="screenshot?.image" alt="screenshot {{ i }}" />
+       <img class="object-cover rounded-xl rounded-b-none h-52 w-full z-0" [src]="screenshot?.image" alt="screenshot {{ i }}"  [loading]="'lazy'" />
     </div>
   </ng-container>
   <div class="flex justify-center gap-1 relative">

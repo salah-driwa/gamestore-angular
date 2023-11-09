@@ -20,6 +20,8 @@ import { HttpErrorsInterceptor } from './interceptors/http-errors.interceptors';
 import { CardComponent } from './components/card/card.component';
 import { DetailsComponent } from './components/details/details.component';
 
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { DetailsComponent } from './components/details/details.component';
     NavbarComponent,
     HomeComponent,
     CardComponent,
-    DetailsComponent
+    DetailsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { DetailsComponent } from './components/details/details.component';
     GaugeModule.forRoot(),
     HttpClientModule,
     FormsModule,
+    NgxSkeletonLoaderModule,
 
     MatTabsModule,
     MatIconModule,

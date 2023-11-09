@@ -1,21 +1,24 @@
-<div class="details bg-background">
-    <div class="  h-[80vh] relative ">
+<div class="details bg-background h-fit ">
+    <div class="  h-[100vh] relative ">
       <div class='absolute w-full  h-full  bg-gradient-to-t  top-2 from-background z-10 '></div>
-      <div class='absolute w-full  h-full  bg-gradient-to-b  from-background z-10  opacity-50'></div>
+      <div class='absolute w-full  h-full  bg-gradient-to-b  from-background z-10  opacity-70'></div>
     
        <img *ngIf="!game?.trailers?.length"
         class="  relative h-full  w-full object-cover  bg-cover  z-0    opacity-40"
         src="{{ game?.background_image }}"
         alt="background image"
       />
-      <div *ngIf="game?.trailers?.length" >
-
-        <video class="h-full  w-full relative object-cover  bg-cover" controls  autoplay  *ngFor="let trailer of game?.trailers"    [muted]="'muted'">
-          <source src="{{trailer.data.max}}" type="video/mp4"  />
+      <div *ngIf="game?.trailers?.length"  class=" z-0">
+    <div *ngFor="let trailer of game?.trailers;let first = first  " >
+        <video *ngIf="first" class="h-full  w-full relative object-cover  bg-cover"   autoplay  loop     [muted]="'muted'">
+          <source  src="{{trailer.data.max}}" type="video/mp4"  />
          
           Your browser does not support the video tag.
         </video>
+        </div>
       </div>
+      
+    
       
       
     </div>
@@ -55,5 +58,6 @@
         
       </div>
     </div>
+    <div class='absolute w-full  bottom-0 top-52 h-full  bg-gradient-to-t  from-background   z-10  opacity-100'></div>
   </div>
   
