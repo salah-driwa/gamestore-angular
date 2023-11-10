@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment as env } from 'src/environments/environment.prod';
-import { APIResponse, Game } from '../models';
+import { APIResponse, Game, Stores } from '../models';
 import { forkJoin, map } from 'rxjs';
 
 @Injectable({
@@ -66,7 +66,14 @@ export class HttpService {
           })
         );
       }
-     
 
+      getstores() :Observable<APIResponse<Stores>> {
+        let params = new HttpParams()
+         return this.http.get<APIResponse<Stores>>(`${env.BASE_URL}/stores`, {
+            params: params,
+          });
+      }
+     
+     
    
 }

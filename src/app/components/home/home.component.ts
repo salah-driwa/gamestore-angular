@@ -4,6 +4,7 @@ import { APIResponse, Game } from 'src/app/models';
 import { HttpService } from 'src/app/services/http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -76,4 +77,10 @@ openGameDetail(id:string):void{
     this.routeSub.unsubscribe();
   }
  }
+
+
+
+ onSubmit(form:NgForm){
+  this.router.navigate(['search', form.value.search])
+}
 }

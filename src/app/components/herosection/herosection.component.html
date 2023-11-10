@@ -1,0 +1,28 @@
+
+<section class="  h-[750px]  overflow-hidden relative">
+
+    <div  class="  w-full flex  justify-center  mx-auto absolute  z-20"><div *ngFor="let store of stores; let i = index"  class="hover:no-underline ">
+        <div (click)="setindex(i)" class="bg-backgroundlight p-4 rounded-md shadow-md w-48 h-20 cursor-pointer flex mx-2" *ngIf=" i < 4 || i == stores?.length! - 1" >
+          <!-- Card content here -->
+          <img src="{{ store.image_background  }}" alt="ss" class="h-full">
+          <p class="text-white">{{ store.name  }}</p>
+        </div>
+    </div>
+      
+      
+</div>
+
+<div class='absolute w-full  h-full  bg-gradient-to-b  from-background z-10  opacity-70 '></div>
+<div class='absolute w-full  h-full  bg-gradient-to-t  from-background z-10  opacity-70 '></div>
+<div *ngFor="let store of stores; let i = index">
+<img *ngIf="i === currentindex" src="{{ store.image_background  }}" class="w-full mx-auto h-full object-cover" >
+<div *ngIf="i === currentindex" class="  absolute top-1/2 z-20  left-96">
+    <p  class="text-white text-8xl ">{{ store.name  }}</p>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+        get now
+      </button>
+  
+    <p  class="text-white text-2xl ">{{ "current games available "+store.games_count  }}</p>
+</div>
+</div>
+     </section>

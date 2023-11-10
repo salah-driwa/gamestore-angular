@@ -1,4 +1,11 @@
 
+export interface Stores {
+    id:string;
+    name:string;
+    domain:string
+    image_background:string;
+    games_count:number;
+}
 
 export interface Game { 
     background_image: string;

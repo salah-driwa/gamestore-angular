@@ -21,6 +21,7 @@ import { CardComponent } from './components/card/card.component';
 import { DetailsComponent } from './components/details/details.component';
 
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { HerosectionComponent } from './components/herosection/herosection.component';
 
 
 
@@ -31,6 +32,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     HomeComponent,
     CardComponent,
     DetailsComponent,
+    HerosectionComponent,
 
   ],
   imports: [
