@@ -3,11 +3,11 @@
 
     <div  class="  w-full flex   flex-col  justify-center  mx-auto absolute    z-20  mt-10">
       <div *ngFor="let store of stores; let i = index"  class="hover:no-underline   ">
-        <div (click)="setindex(i)"  
+        <div  (mouseenter)="setindex(i)"  
          [@fadeIn]="shouldFadeIn ? true : false " 
           class="bg-backgroundlight p-4 rounded-md shadow-md w-64
           h-24 cursor-pointer flex my-2 ml-auto mr-24
-          hover:scale-110 transition-transform duration-300 ease-in"
+          hover:scale-110 hover:bg-[#3d3d3d] transition-transform duration-300 ease-in"
           *ngIf="i < 4 || i == stores?.length! - 1" >
           <!-- Card content here -->
           <img src="{{ store.image_background  }}" alt="ss" class="h-full rounded-md">

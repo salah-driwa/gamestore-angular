@@ -37,7 +37,7 @@ export class HerosectionComponent {
   
      // Initialize with an empty string or an appropriate default value
   
-     const indexIncrementer = interval(4000).subscribe(() => {
+     const indexIncrementer = interval(10000).subscribe(() => {
       this.currentindex = (this.currentindex + 1) % 5; // Reset to 0 if it exceeds 4
     });
      }
