@@ -10,7 +10,7 @@
           hover:scale-110 hover:bg-[#3d3d3d] transition-transform duration-300 ease-in"
           *ngIf="i < 4 || i == stores?.length! - 1" >
           <!-- Card content here -->
-          <img src="{{ store.image_background  }}" alt="ss" class="h-full rounded-md">
+          <img src="{{ store.image_background  }}" alt="ss" class="h-full rounded-md ">
           <p class="text-white pl-5 text-sm flex items-center h-full w-full  text-justify">{{ store.name  }}</p>
         </div>
      </div>     
@@ -21,7 +21,7 @@
 <div class='absolute w-full  h-full  bg-gradient-to-t  from-background z-10  opacity-100 '></div>
 <div class='absolute w-full  h-full  bg-gradient-to-r  from-background z-10  opacity-90 '></div>
 <div *ngFor="let store of stores; let i = index">
-<img *ngIf="i === currentindex" src="{{ store.image_background  }}" class="w-full mx-auto h-full object-cover" >
+<img *ngIf="i === currentindex" src="{{ store.image_background  }}" class="w-full mx-auto h-full object-cover sideway" >
 <div *ngIf="i === currentindex" class="  absolute top-1/2 z-20  left-64  sideway">
     <p  class="text-white text-8xl ">{{ store.name  }}</p>
 
