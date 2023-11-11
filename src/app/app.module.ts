@@ -22,6 +22,7 @@ import { DetailsComponent } from './components/details/details.component';
 
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { HerosectionComponent } from './components/herosection/herosection.component';
+import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
 
 
 
@@ -33,6 +34,8 @@ import { HerosectionComponent } from './components/herosection/herosection.compo
     CardComponent,
     DetailsComponent,
     HerosectionComponent,
+    GameTabsComponent
+
 
   ],
   imports: [

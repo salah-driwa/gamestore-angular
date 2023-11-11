@@ -40,10 +40,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
       .getGameDetails(id)
       .subscribe((gameResp: Game) => {
         this.game = gameResp;
-
+        
         setTimeout(() => {
           this.gameRating = this.game? this.game.metacritic : 0;
-          console.log(this.game?.trailers[1].data.max);
+     
         }, 1000);
       });
      

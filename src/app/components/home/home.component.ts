@@ -19,7 +19,7 @@ export class HomeComponent {
  public games: Array<Game>;
  private routeSub: Subscription= new Subscription();
  private gameSub: Subscription = new Subscription();
-
+public currentpage=1;
  public loader = true ;
 
  constructor(private httpService: HttpService,
@@ -49,19 +49,39 @@ ngOnInit(): void{
     }else{
       this.searchGames('metacrit');
     }
-
+   
   }
   )
   //an
 
 }
 
-searchGames(sort: string, platform?: string, genres?: string, search?: string): void {
+previewpage(){
+  if(this.currentpage>1)
+    {this.currentpage--;
+      this.searchGames(this.sort, this.platform, this.genres,"",this.currentpage.toString())
+      window.scrollTo({ top:300, behavior: 'smooth' });
+    }
+ 
+}
+    
+
+nextpage(){
+  this.currentpage++;
+  this.searchGames(this.sort, this.platform, this.genres,"",this.currentpage.toString())
+  window.scrollTo({ top:300, behavior: 'smooth' });
+}
+
+
+searchGames(sort: string, platform?: string, genres?: string, search?: string,currentpage?:string): void {
   // Construct the API request based on the selected options
   this.gameSub = this.httpService
-    .getGameList(sort, platform? platform : '', genres? genres : '', search? search : '')
+    .getGameList(sort, platform? platform : '', genres? genres : '', search? search : '' ,currentpage? currentpage :'1')
     .subscribe((gameList: APIResponse<Game>) => {
       this.games = gameList.results;
+   console.log(this.games);
+      
+     
     });
 }
 

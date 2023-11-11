@@ -20,11 +20,14 @@ export class HttpService {
     platform: string,
      genres: string,
     search: string ,
+    currentpage:string,
   ): Observable<APIResponse<Game>> {
     let params = new HttpParams()
-  .set('ordering', ordering).set('metacritic', '60,100');
+  .set('ordering', ordering).set('metacritic', '60,100').set('page',currentpage) ;;
 
-
+  
+    
+    
     if (platform) {
       params = params.set('parent_platforms', platform);
     }
@@ -58,11 +61,14 @@ export class HttpService {
           gameTrailersRequest,
         }).pipe(
           map((resp: any) => {
-            return {
-              ...resp['gameInfoRequest'],
-              screenshots: resp['gameScreenshotsRequest']?.results,
-              trailers: resp['gameTrailersRequest']?.results,
-            };
+            const { gameInfoRequest, gameScreenshotsRequest, gameTrailersRequest } = resp;
+             // Assuming results is an array in gameScreenshotsRequest
+          const short_screenshots = gameScreenshotsRequest?.results || [];
+          return {
+            ...gameInfoRequest,
+            short_screenshots,
+            trailers: gameTrailersRequest?.results || [], // Assuming results is an array in gameTrailersRequest
+          };
           })
         );
       }

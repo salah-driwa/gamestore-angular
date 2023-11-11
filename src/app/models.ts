@@ -21,13 +21,14 @@ export interface Game {
     publishers: Array <Publishers>;
     ratings: Array<Rating>;
     short_screenshots: Array <Short_screenshot>;
-     trailers: Array<Trailer>;
+    trailers: Array<Trailer>;
   
      hoverState: 'initial' | 'hovered';
       // Add this property
 
 }
-export interface APIResponse<T> { 
+export interface APIResponse<T> {
+
     results: Array<T>;
 }
 interface Genre {

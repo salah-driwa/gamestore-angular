@@ -16,12 +16,12 @@
         type="text"
         class="w-full p-2 border-0   hover:border-opacity-0  
          text-white text-opacity-60 placeholder:text-opacity-60 
-          placeholder:text-white rounded-2xl  bg-[#3b3b3b]  focus:border-transparent "
+          placeholder:text-white rounded-2xl  bg-[#3b3b3b]  focus:border-0  focus-visible:border-0 "
         placeholder=" Search"
         name="search"
         ngModel
       />
-    
+  
       
     </div>
     </form>
@@ -99,11 +99,20 @@
     </div>
             
   </section>
-<div class=" flex   flex-wrap  justify-center    2xl:mx-10  pb-44">
+<div class=" flex   flex-wrap  justify-center    2xl:mx-10  pb-44" >
   
-    <ng-container *ngFor="let game of games "   class=" " >
+    <ng-container *ngFor="let game of games "   class=" "  >
         <app-card [game]="game" [openGameDetails]="openGameDetail" [router]="router"></app-card>
     </ng-container>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="previewpage()">
+      Preview page
+    </button>
+    <p class=" text-md  pt-5 px-10 text-white">{{currentpage}}</p>
+   
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="nextpage() ">
+      Next page
+    </button>
 <!-- app.component.html -->
 
   
