@@ -14,7 +14,8 @@ export class HttpService {
    
     
   }
-   
+ 
+
   getGameList(
     ordering: string,
     platform: string,
@@ -23,7 +24,7 @@ export class HttpService {
     currentpage:string,
   ): Observable<APIResponse<Game>> {
     let params = new HttpParams()
-  .set('ordering', ordering).set('metacritic', '60,100').set('page',currentpage) ;;
+  .set('ordering', ordering).set('metacritic', '60,100').set('page',currentpage) ;
 
   
     

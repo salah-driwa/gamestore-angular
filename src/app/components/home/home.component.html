@@ -105,19 +105,38 @@
         <app-card [game]="game" [openGameDetails]="openGameDetail" [router]="router"></app-card>
     </ng-container>
 
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="previewpage()">
-      Preview page
-    </button>
-    <p class=" text-md  pt-5 px-10 text-white">{{currentpage}}</p>
    
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="nextpage() ">
-      Next page
-    </button>
 <!-- app.component.html -->
 
   
         
 </div>
 
+
+
+
+
+<div  class="flex justify-center   mb-5">
+  <ul class="inline-flex -space-x-px text-sm">
+    <li>
+      <a (click)="previewpage()"class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+    </li>
+    <div class=" flex">
+   
+      <a *ngFor="let page of generatePagesArray()"
+      class="px-3 h-8 pt-2 leading-tight
+       text-gray-500 cursor-pointer bg-white border border-gray-300 hover:bg-gray-100
+        hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700
+         dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" (click)="setpage(page)"
+         [ngClass]="{'dark:bg-slate-300': page == currentpage }">{{ page }}</a>
+    
+  </div>
+    <li>
+      <a (click)="nextpage() "  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+    </li>
+  </ul>
+</div>
+
+<div class="  ">d </div>
 
 </div>

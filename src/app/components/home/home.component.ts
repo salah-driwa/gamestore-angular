@@ -21,6 +21,7 @@ export class HomeComponent {
  private gameSub: Subscription = new Subscription();
 public currentpage=1;
  public loader = true ;
+  search: any;
 
  constructor(private httpService: HttpService,
   public router: Router,
@@ -42,9 +43,10 @@ public currentpage=1;
 
 ngOnInit(): void{
   this.activatedRoute.params.subscribe((params:Params)=>{
-
+    
     if(params['game-search'] ){
-      this.searchGames('metacrit',this.platform,this.genres,params['game-search'] )      ;
+      this.searchGames('metacrit',this.platform,this.genres,params['game-search'] ) ;
+      this.search =params['game-search'] ;     
     
     }else{
       this.searchGames('metacrit');
@@ -56,10 +58,13 @@ ngOnInit(): void{
 
 }
 
+generatePagesArray(): number[] {
+  return Array.from({ length: 9 }, (_, index) => this.currentpage + index);
+}
 previewpage(){
   if(this.currentpage>1)
     {this.currentpage--;
-      this.searchGames(this.sort, this.platform, this.genres,"",this.currentpage.toString())
+      this.searchGames(this.sort, this.platform, this.genres,this.search,this.currentpage.toString())
       window.scrollTo({ top:300, behavior: 'smooth' });
     }
  
@@ -68,23 +73,29 @@ previewpage(){
 
 nextpage(){
   this.currentpage++;
-  this.searchGames(this.sort, this.platform, this.genres,"",this.currentpage.toString())
+  this.searchGames(this.sort, this.platform, this.genres,this.search,this.currentpage.toString())
   window.scrollTo({ top:300, behavior: 'smooth' });
 }
 
 
 searchGames(sort: string, platform?: string, genres?: string, search?: string,currentpage?:string): void {
   // Construct the API request based on the selected options
+ 
   this.gameSub = this.httpService
+  
     .getGameList(sort, platform? platform : '', genres? genres : '', search? search : '' ,currentpage? currentpage :'1')
     .subscribe((gameList: APIResponse<Game>) => {
       this.games = gameList.results;
-   console.log(this.games);
-      
-     
+     console.log(this.games)
+    
     });
 }
 
+setpage(id:number){
+  this.currentpage =id ;
+   this.searchGames(this.sort, this.platform, this.genres,this.search,this.currentpage.toString())
+  window.scrollTo({ top:300, behavior: 'smooth' });
+}
 openGameDetail(id:string):void{
   this.router.navigate(['details',id]);
 }
