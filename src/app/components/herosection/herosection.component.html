@@ -22,13 +22,27 @@
 <div class='absolute w-full  h-full  bg-gradient-to-r  from-background z-10  opacity-90 '></div>
 <div *ngFor="let store of stores; let i = index">
 <img *ngIf="i === currentindex" src="{{ store.image_background  }}" class="w-full mx-auto h-full object-cover" >
-<div *ngIf="i === currentindex" class="  absolute top-1/2 z-20  left-64">
+<div *ngIf="i === currentindex" class="  absolute top-1/2 z-20  left-64 ">
     <p  class="text-white text-8xl ">{{ store.name  }}</p>
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="openStoreUrl(store.domain)">
-        get now
-      </button>
+
+      <button (click)="openStoreUrl(store.domain) "  class="flex items-center justify-center py-3 my-3 px-5 leading-tight
+      text-gray-900 text-xl  font-bold  cursor-pointer  ml-3  rounded-md   w-fit h-fit
+        bg-white hover:translate-x-1   hover:-translate-y-1  transition-transform duration-100 ease-in  "
+       [ngClass]="{
+        'bg-[#1a9fff]  text-gray-200 !': store.name === 'Steam',
+       
+        ' bg-[#202020]  text-gray-50  !': store.name === 'Epic Games',
+        'dark:bg-your-color-for-app-store!': store.name === 'app Store',
+        'dark:bg-your-color-for-playstation-store!': store.name === 'PlayStation Store',
+        'dark:bg-your-color-for-xbox-store!': store.name === 'Xbox Store'
+      }" >Chech It Now </button>
   
-    <p  class="text-white text-2xl ">{{ "current games available "+store.games_count  }}</p>
+      <p class="text-white text-2xl">
+        <span>Current games available </span>
+        <span class="text-blue-500 count-up">{{ store.games_count }}</span>
+      </p>
+      
+
 </div>
 </div>
      </section>

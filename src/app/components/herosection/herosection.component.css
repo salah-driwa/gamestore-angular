@@ -1,0 +1,31 @@
+/* Add this CSS in your styles file or style block */
+@keyframes countUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes sideway {
+    from {
+      opacity: 0;
+      transform: translatex(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translatex(0);
+    }
+  }
+  .sideway{
+    animation: sideway 1s ease-out;
+  }
+
+  .count-up {
+    display: inline-block;
+    animation: countUp 1s ease-out;
+  }
+  
