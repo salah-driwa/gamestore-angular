@@ -22,7 +22,7 @@
 <div class='absolute w-full  h-full  bg-gradient-to-r  from-background z-10  opacity-90 '></div>
 <div *ngFor="let store of stores; let i = index">
 <img *ngIf="i === currentindex" src="{{ store.image_background  }}" class="w-full mx-auto h-full object-cover" >
-<div *ngIf="i === currentindex" class="  absolute top-1/2 z-20  left-64 ">
+<div *ngIf="i === currentindex" class="  absolute top-1/2 z-20  left-64  sideway">
     <p  class="text-white text-8xl ">{{ store.name  }}</p>
 
       <button (click)="openStoreUrl(store.domain) "  class="flex items-center justify-center py-3 my-3 px-5 leading-tight
