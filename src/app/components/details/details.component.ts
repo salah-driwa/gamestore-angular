@@ -45,7 +45,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
           this.gameRating = this.game? this.game.metacritic : 0;
      
         }, 1000);
+        console.log(this.game);
       });
+      
      
   }
 

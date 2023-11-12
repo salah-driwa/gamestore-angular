@@ -13,7 +13,17 @@
       
       
     </div>
-    <div class="game-content z-20">
+
+
+             <div class=" z-20 absolute top-32 right-32">
+               <div class=" flex justify-center z-50 gap-10 opacity-75">
+                 <div class=" " *ngFor="let game of game?.parent_platforms; let last = last" > 
+                <img src="assets/images/platforms/{{game.platform.slug }}.svg" alt="Platform 1" class="w-16 h-16 " />
+                    </div>
+               </div>
+             </div>
+    <div class=" z-20">
+      
       <div class="details-wrapper">
         <div class="game-header">
           <h1 class="game-header-title">{{ game?.name }}</h1>
@@ -22,8 +32,9 @@
             
           </h2>
           <p class="game-header-genres">
-            <span *ngFor="let genre of game?.genres; let last = last"
-            >{{ genre.name }}<span *ngIf="!last">, </span></span
+            Genres:  
+            <span *ngFor="let genre of game?.genres; let last = last" class=" px-2"
+            > {{ genre.name }}<span *ngIf="!last">, </span></span
           >
           </p>
           <div class="game-gauge">
@@ -45,11 +56,28 @@
               >Metacritic</a
             >
           </div>
+
+            <div class=" flex">
+                 <p *ngIf="game?.publishers?.length" class=" text-white font-medium pt-4">
+                   Publishers: 
+                   <span *ngFor="let publisher of game?.publishers; let last = last" class="pl-2"
+                     >{{ publisher.name }}<span *ngIf="!last">, </span></span
+                   >
+                 </p>
+
+                 <div *ngIf="game?.website" class=" bg-backgroundlight   ml-36  w-28 text-white hover:bg-white hover:bg-opacity-10 p-2 rounded-md 
+          hover:translate-y-1 hover:duration-150  hover:ease-in hover:translate-x-1 hover:scale-105">
+           
+            <a class="game-tabs-link flex " href="{{ game?.website }}" target="_blank"> <span> Website</span>
+              <img class=" pl-2 h-6 text-white" src="../../../assets/images/website.svg" alt=""></a>
+                   </div>
+            </div>
         </div>
         
       </div>
     </div>
-   
+       
+
     <app-game-tabs [game]="game" ></app-game-tabs>
   </div>
   
