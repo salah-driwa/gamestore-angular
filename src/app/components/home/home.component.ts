@@ -28,7 +28,7 @@ public currentpage=1;
  constructor(private httpService: HttpService,
   public router: Router,
   private activatedRoute: ActivatedRoute) {
-    this.DisplayOption = "option1";
+    this.DisplayOption = localStorage.getItem('DisplayOption') || 'option1';
   this.sort = '';
   this.games = [];
  this.platform= '';
@@ -40,6 +40,8 @@ public currentpage=1;
 displayoption(option :string){
 
  this.DisplayOption = option;
+  // Save the DisplayOption to localStorage
+  localStorage.setItem('DisplayOption', option);
 }
 skeletonIndexes = Array.from({ length: 20 }, (_, index) => index);
 
@@ -93,7 +95,7 @@ searchGames(sort: string, platform?: string, genres?: string, search?: string,cu
     // console.log(this.games)
     
     
-      this.isLoadingData = false;
+   this.isLoadingData = false;
  
     });
 }

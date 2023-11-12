@@ -49,5 +49,38 @@
     100% {
       opacity: 0.5;
     }
+
+    
   }
+  .display2{
   
+    @apply flex-col justify-center align-middle;
+  
+    gap: 0;
+  }
+  .bg-card2{
+    width: 85%;
+    height: 320px;
+    background-color: #202020 ;
+    border-radius: 8px;
+    margin: 8px; /* Adjust margin as needed */
+    animation: loading 1.5s infinite;
+
+  }
+  .skeleton-card2 {
+    width: 30%;
+    height: 210px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+  }
+  .skeleton-text2{
+    
+
+      margin-top: 20px;
+      margin-left: 10px;
+       width:   300px;
+       height: 20px;
+       background-color: #f0f0f0;
+       border-radius: 8px;
+     
+  }
