@@ -41,7 +41,7 @@ displayoption(option :string){
 
  this.DisplayOption = option;
 }
-skeletonIndexes = Array.from({ length: 10 }, (_, index) => index);
+skeletonIndexes = Array.from({ length: 20 }, (_, index) => index);
 
 ngOnInit(): void{
   this.activatedRoute.params.subscribe((params:Params)=>{
@@ -66,6 +66,7 @@ generatePagesArray(): number[] {
 previewpage(){
   if(this.currentpage>1)
     {this.currentpage--;
+      this.isLoadingData = true ;
       this.searchGames(this.sort, this.platform, this.genres,this.search,this.currentpage.toString())
       window.scrollTo({ top:300, behavior: 'smooth' });
     }
@@ -75,6 +76,7 @@ previewpage(){
 
 nextpage(){
   this.currentpage++;
+  this.isLoadingData = true ;
   this.searchGames(this.sort, this.platform, this.genres,this.search,this.currentpage.toString())
   window.scrollTo({ top:300, behavior: 'smooth' });
 }
@@ -100,6 +102,7 @@ setpage(id:number){
   this.currentpage =id ;
    this.searchGames(this.sort, this.platform, this.genres,this.search,this.currentpage.toString())
   window.scrollTo({ top:300, behavior: 'smooth' });
+  this.isLoadingData = true ;
 }
 openGameDetail(id:string):void{
   this.router.navigate(['details',id]);
