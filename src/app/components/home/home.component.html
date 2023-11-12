@@ -91,19 +91,37 @@
 </div>
   
     </div>
-    <div class="  text-white my-auto ml-auto">
+    <div class="  text-white my-auto ml-auto flex gap-3">
       Display options:
+      <img src="../../../assets/images/display option/menu.png"
+      [class.bg-[#ffffff]]="DisplayOption === 'option1'"
+        class=" h-8 rounded-sm  bg-[#3b3b3b]  hover:bg-white hover:bg-opacity-30 p-1.5" alt="" (click)="displayoption('option1')">
+      <img src="../../../assets/images/display option/list.png" 
+      [class.bg-[#ffffff]]="DisplayOption === 'option2'"
+   
+      class=" h-8 rounded-sm  bg-[#3b3b3b]  hover:bg-white hover:bg-opacity-30" alt="" (click)="displayoption('option2')">
+      
     <div>
 
     </div>
     </div>
             
   </section>
-<div class=" flex   flex-wrap  justify-center    2xl:mx-10  pb-44" >
+
+  <div class="skeleton-container"  *ngIf="isLoadingData">
+    <div class="bg-card" *ngFor="let index of skeletonIndexes" >
+      <div class="skeleton-card" ></div>
+      <div class="skeleton-text" ></div>
+      <div class="skeleton-text2" ></div>
+    </div>
+  </div>
+
+<div class=" flex   flex-wrap  justify-center    2xl:mx-10  pb-44"  [class.flex-col]="DisplayOption === 'option2'"    *ngIf="!isLoadingData"
+>
   
-    <ng-container *ngFor="let game of games "   class=" "  >
-        <app-card [game]="game" [openGameDetails]="openGameDetail" [router]="router"></app-card>
-    </ng-container>
+    <ng-container *ngFor="let game of games "   class=""   >
+      <app-card  [game]="game" [openGameDetails]="openGameDetail" [router]="router" [display]="DisplayOption"></app-card>
+          </ng-container>
 
    
 <!-- app.component.html -->
@@ -141,6 +159,6 @@
   </ul>
 </div>
 
-<div class="  ">d </div>
+<div class=" h-2  "></div>
 
 </div>

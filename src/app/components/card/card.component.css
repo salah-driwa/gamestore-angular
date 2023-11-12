@@ -1,0 +1,13 @@
+/* styles.css (global) or your-component.styles.css */
+.xl-w-10-12 {
+    @apply xl:w-10/12 sm:w-10/12 w-11/12;
+  }
+  
+.textandplatform{
+    @apply flex flex-col ml-10;
+}
+.genersanddescrption{
+    @apply bottom-10 right-10  ml-10 w-full;
+}
+
+  

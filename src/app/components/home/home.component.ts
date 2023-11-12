@@ -20,26 +20,28 @@ export class HomeComponent {
  private routeSub: Subscription= new Subscription();
  private gameSub: Subscription = new Subscription();
 public currentpage=1;
- public loader = true ;
+ public isLoadingData = true ;
   search: any;
 
+  public DisplayOption ="";
+  
  constructor(private httpService: HttpService,
   public router: Router,
   private activatedRoute: ActivatedRoute) {
-  
+    this.DisplayOption = "option1";
   this.sort = '';
   this.games = [];
  this.platform= '';
  this.genres = '';
    // Initialize with an empty string or an appropriate default value
-   setTimeout(() => {
-    this.loader = false;
-  }, 1500);
- 
+  
    }
    
-   
+displayoption(option :string){
 
+ this.DisplayOption = option;
+}
+skeletonIndexes = Array.from({ length: 10 }, (_, index) => index);
 
 ngOnInit(): void{
   this.activatedRoute.params.subscribe((params:Params)=>{
@@ -86,8 +88,11 @@ searchGames(sort: string, platform?: string, genres?: string, search?: string,cu
     .getGameList(sort, platform? platform : '', genres? genres : '', search? search : '' ,currentpage? currentpage :'1')
     .subscribe((gameList: APIResponse<Game>) => {
       this.games = gameList.results;
-     console.log(this.games)
+    // console.log(this.games)
     
+    
+      this.isLoadingData = false;
+ 
     });
 }
 

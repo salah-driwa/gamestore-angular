@@ -1,24 +1,31 @@
-<div class="game-tabs">
+<div class="">
+ 
+<div class=" bg-background text-white">
+   <div *ngIf="game?.parent_platforms?.length" class="flex w-full  z-20 justify-center">
+ {{game?.released}}
+  <div class=" " *ngFor="let game of game?.parent_platforms; let last = last"
+    > 
+    <img src="assets/images/platforms/{{game.platform.slug }}.svg" alt="Platform 1" class="w-10 h-10 " />
+    </div>
+  
+</div>
+<p *ngIf="game?.publishers?.length" class="game-tabs-par">
+  Publishers:
+  <span *ngFor="let publisher of game?.publishers; let last = last"
+    >{{ publisher.name }}<span *ngIf="!last">, </span></span
+  >
+</p>
+<p *ngIf="game?.website" class="game-tabs-par">
+  Website:
+  <a class="game-tabs-link" href="{{ game?.website }}" target="_blank">{{
+    game?.website
+  }}</a>
+</p></div>
+
+
   <mat-tab-group mat-align-tabs="start" backgroundColor="primary">
     <mat-tab label="About">
-      <p *ngIf="game?.parent_platforms?.length" class="game-tabs-par">
-        Platforms:
-        <span *ngFor="let game of game?.parent_platforms; let last = last"
-          >{{ game.platform.name }}<span *ngIf="!last">, </span></span
-        >
-      </p>
-      <p *ngIf="game?.publishers?.length" class="game-tabs-par">
-        Publishers:
-        <span *ngFor="let publisher of game?.publishers; let last = last"
-          >{{ publisher.name }}<span *ngIf="!last">, </span></span
-        >
-      </p>
-      <p *ngIf="game?.website" class="game-tabs-par">
-        Website:
-        <a class="game-tabs-link" href="{{ game?.website }}" target="_blank">{{
-          game?.website
-        }}</a>
-      </p>
+     
       <div class="game-description" [innerHTML]="game?.description"></div>
       <p class="game-tabs-votes">
         <ng-container *ngFor="let rating of game?.ratings">
@@ -33,13 +40,14 @@
         </ng-container>
       </p>
     </mat-tab>
-    <mat-tab label="Screenshots" >
+    <mat-tab label="Screenshots"  >
+      <div class=" flex">
       <img
-        class="game-screenshot"
+        class="   w-60 "
         *ngFor="let screenshot of game?.short_screenshots"
         src="{{ screenshot.image }}"
         alt="screenshot"
-      />
+      /></div>
     </mat-tab>
     <mat-tab label="Trailers" *ngIf="game?.trailers?.length">
       <video
@@ -53,5 +61,5 @@
     </mat-tab>
    
   </mat-tab-group>
-  {{ game?.short_screenshots+ ' hi'}}
+
 </div>

@@ -26,6 +26,7 @@ export class CardComponent  implements OnInit{
   @Input() cardIndex: number = 0;
   @Input() openGameDetails: ((id: string) => void ) =(id: string) => {};;
   @Input() router: Router | undefined;
+  @Input() display: string | undefined ;
   hoverState: 'initial' | 'hovered' = 'initial';
   zIndex = 0; // 
   currentScreenshotIndex: number = 0;

@@ -26,6 +26,7 @@ import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
     CardComponent,
     DetailsComponent,
     HerosectionComponent,
-    GameTabsComponent
+    GameTabsComponent,
+   
 
 
   ],
