@@ -23,6 +23,8 @@ import { DetailsComponent } from './components/details/details.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { HerosectionComponent } from './components/herosection/herosection.component';
 import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
+import { SimilargamecardComponent } from './components/similargamecard/similargamecard.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -36,6 +38,7 @@ import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
     DetailsComponent,
     HerosectionComponent,
     GameTabsComponent,
+    SimilargamecardComponent,
    
 
 
@@ -48,6 +51,7 @@ import { GameTabsComponent } from './components/game-tabs/game-tabs.component';
     HttpClientModule,
     FormsModule,
     NgxSkeletonLoaderModule,
+    MatPaginatorModule,
 
     MatTabsModule,
     MatIconModule,

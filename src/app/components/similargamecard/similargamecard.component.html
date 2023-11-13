@@ -1,0 +1,8 @@
+<div  class="   h-80  w-60  bg-backgroundlight rounded-md hover:scale-105  hover:bg-white hover:bg-opacity-10 cursor-pointer"  (click)="openGamecardDetail(game?.id || '')">
+    <div class="  h-60">
+<img src="{{ game?.background_image }}" class=" object-cover w-full h-full  rounded-b-none rounded-md" alt="{{ game?.background_image }}">
+</div>
+ 
+<p class=" text-white font-bold  text-base text-center pt-5">{{game?.name}} </p>
+
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Game } from 'src/app/models';
+import { APIResponse, Game } from 'src/app/models';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -16,10 +16,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
   routeSub: Subscription | undefined;
   gameSub: Subscription | undefined;
   public videoSource: string | undefined;
+  games: Game[] | undefined;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private httpService: HttpService
+    private httpService: HttpService,  public router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -28,11 +29,14 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.routeSub = this.activatedRoute.params.subscribe((params: Params) => {
       this.gameId = params['id'];
       this.getGameDetails(this.gameId? this.gameId :'' );
-      
+      this.getSimilarGames(this.gameId? this.gameId :'' );
+
+      this.gameRating=0;
     });
     if (this.game?.trailers?.length) {
       this.videoSource = this.game.trailers[0].data?.max;
     }
+    window.scrollTo({ top:0, behavior: 'smooth' });
   }
 
   getGameDetails(id: string): void {
@@ -45,11 +49,38 @@ export class DetailsComponent implements OnInit, OnDestroy {
           this.gameRating = this.game? this.game.metacritic : 0;
      
         }, 1000);
-        console.log(this.game);
-      });
-      
-     
+        //console.log(this.game);
+      }); 
   }
+
+  getGameStore(id: string): void {
+    this.gameSub = this.httpService
+      .getGameDetails(id)
+      .subscribe((gameResp: Game) => {
+        this.game = gameResp;
+        
+        setTimeout(() => {
+          this.gameRating = this.game? this.game.metacritic : 0;
+     
+        }, 1000);
+        //console.log(this.game);
+      }); 
+  }
+ navigateToHome(genreid: string): void {
+    // Use Angular's Router to navigate to the home page with the selected genre as a query parameter
+    this.router.navigate(['/'], { queryParams: { genre: genreid } });
+  }
+  getSimilarGames(id: string): void {
+    this.gameSub = this.httpService
+      .getSimilarGame(id)
+      .subscribe((apiResponse: APIResponse<Game>) => {
+        // Assuming you want the array of games from the API response
+        this.games = apiResponse.results;
+        console.log(this.games);
+      });
+  }
+  
+
 
   getColor(value: number): string {
     if (value > 75) {

@@ -38,7 +38,7 @@
               id="sort"
               name="sort"
               [(ngModel)]="sort"
-              (change)="searchGames(sort, platform, genres)"
+              (change)="searchGames(sort, platform, genres,search)"
               class="block w-full text-md  pl-16   py-2 text-white rounded-md bg-[#3b3b3b]   "
             >
          
@@ -57,10 +57,13 @@
 
   <select
     [(ngModel)]="platform"
-    (change)="searchGames(sort, platform, genres)"
+    (change)="searchGames(sort, platform, genres,search)"
     class="block w-full text-md   px-2 py-2  mt-2 text-white rounded-md bg-[#3b3b3b]"
+
   >
-    <option value="">Platform</option>
+  <option value="">Platform</option>
+ 
+   
     <option value="1">PC</option>
     <option value="2">PlayStation</option>
     <option value="3">Xbox</option>
@@ -74,18 +77,14 @@
  
   <select
     [(ngModel)]="genres"
-    (change)="searchGames(sort, platform, genres)"
+    (change)="searchGames(sort, platform, genres,search)"
     class="block w-full text-md  px-2 py-2 mt-2 text-white rounded-md bg-[#3b3b3b] "
-  >  <option value="">Genres</option>
-    <option value="4">Action </option>
-    <option value="3">Adventure</option>
-    <option value="51">Indie</option>
-    <option value="5">RPG</option>
-    <option value="2">Shooter</option>
-    <option value="10">Strategy</option>
-    <option value="14">Simulation</option>
-    <option value="83">Platformer</option>
-    <option value="59">Multiplayer</option>
+   
+   
+  >  
+  <option value="">Genres</option>
+    <option *ngFor="let genre of allGeners " value="{{genre?.id}}">{{genre.name}} </option>
+  
     <!-- Add more genre options as needed -->
   </select>
 </div>
@@ -148,26 +147,28 @@
   <ul class="inline-flex -space-x-px text-sm">
     <li>
       <a (click)="previewpage()" class="  flex items-center justify-center  w-20
-       px-3 h-8 ms-0 leading-tight  text-white text-opacity-70 cursor-pointer    mr-3  rounded-md 
+       px-3 h-8 ms-0 leading-tight  text-white  cursor-pointer    mr-3  rounded-md 
        bg-backgroundlight dark:border-gray-700 hover:bg-white hover:bg-opacity-10 hover:text-gray-200">Previous</a>
     </li>
     <div class=" flex">
    
       <a *ngFor="let page of generatePagesArray()"
       class="px-3 h-8 pt-2 leading-tight   mx-0.5 rounded-md
-      text-white text-opacity-70 cursor-pointer  
+      text-white  cursor-pointer  
          bg-backgroundlight dark:border-gray-700 hover:bg-white hover:bg-opacity-10 hover:text-gray-200
         " (click)="setpage(page)"
-         [ngClass]="{'dark:bg-slate-300!': page == currentpage }">{{ page }}</a>
+         [ngClass]="{'bg-[#636363]': page == currentpage }"
+        >{{ page }}</a>
     
   </div>
     <li>
       <a (click)="nextpage() "  class="flex items-center justify-center px-3 h-8 leading-tight
-      text-white text-opacity-70 cursor-pointer  ml-3  rounded-md w-20
+      text-white  cursor-pointer  ml-3  rounded-md w-20
       bg-backgroundlight dark:border-gray-700 hover:bg-white hover:bg-opacity-10 hover:text-gray-200    ">Next</a>
     </li>
   </ul>
 </div>
+
 
 <div class=" h-2  "></div>
 

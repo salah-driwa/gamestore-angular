@@ -1,5 +1,5 @@
-<div class="details bg-background h-fit ">
-    <div class="  h-[70vh] relative ">
+<div class="details bg-background  min-h-screen">
+    <div class="  h-[60vh] relative ">
       <div class='absolute w-full  h-full  bg-gradient-to-t  top-2 from-background z-10 '></div>
       <div class='absolute w-full  h-full  bg-gradient-to-b  from-background z-10  opacity-70'></div>
     
@@ -25,39 +25,45 @@
     <div class=" z-20">
       
       <div class="details-wrapper">
-        <div class="game-header">
-          <h1 class="game-header-title">{{ game?.name }}</h1>
-          <h2 class="game-header-release-date">
-            Release: {{ game?.released | date }}
-            
-          </h2>
-          <p class="game-header-genres">
-            Genres:  
-            <span *ngFor="let genre of game?.genres; let last = last" class=" px-2"
-            > {{ genre.name }}<span *ngIf="!last">, </span></span
-          >
-          </p>
-          <div class="game-gauge">
-            <mwl-gauge
-            class="two"
-            [max]="100"
-            [dialStartAngle]="180"
-            [dialEndAngle]="0"
-            [value]="gameRating"
-            [animated]="true"
-            [color]="getColor"
-            [animationDuration]="2"
-          >
-          </mwl-gauge>
-            <a
-              class="game-gauge-label"
-              target="_blank"
-              href="{{ game?.metacritic_url }}"
-              >Metacritic</a
-            >
-          </div>
+        <div class="game-header   ">
+          <h1 class="game-header-title ">{{ game?.name }}</h1>
+                        <div class=" flex flex-col">
+                          
+                           <h2 class="game-header-release-date">
+                             Release: {{ game?.released | date }}
 
-            <div class=" flex">
+                           </h2>
+                           <p class="game-header-genres">
+            Genres:  
+            <span *ngFor="let genre of game?.genres; let last = last" class=" px-2 cursor-pointer " (click)="navigateToHome(genre.id)" 
+            >
+            <span class="  underline  underline-offset-4 hover:text-blue-300">
+             {{ genre.name }}</span>
+             <span *ngIf="!last"> , </span></span
+          >
+                           </p>
+                           <div class=" absolute top-20 right-0" *ngIf="game">
+                                  <mwl-gauge
+
+                                  class="two"
+                                  [max]="100"
+                                  [dialStartAngle]="180"
+                                  [dialEndAngle]="0"
+                                  [value]="gameRating"
+                                  [animated]="true"
+                                  [color]="getColor"
+                                  [animationDuration]="2"
+                                >
+                                </mwl-gauge>
+                                  <a
+                                    class="  text-white font-bold  top-24 w-full absolute text-center"
+                                    target="_blank"
+                                    href="{{ game.metacritic_url }}"
+                                    >Metacritic</a
+                                  >
+                            </div>
+                         
+                             <div class=" flex">
                  <p *ngIf="game?.publishers?.length" class=" text-white font-medium pt-4">
                    Publishers: 
                    <span *ngFor="let publisher of game?.publishers; let last = last" class="pl-2"
@@ -65,19 +71,32 @@
                    >
                  </p>
 
-                 <div *ngIf="game?.website" class=" bg-backgroundlight   ml-36  w-28 text-white hover:bg-white hover:bg-opacity-10 p-2 rounded-md 
+                 <a href="{{ game?.website }}" *ngIf="game?.website" class=" bg-backgroundlight  
+                  ml-36  w-28 text-white hover:bg-white hover:bg-opacity-10 p-2 rounded-md 
           hover:translate-y-1 hover:duration-150  hover:ease-in hover:translate-x-1 hover:scale-105">
            
-            <a class="game-tabs-link flex " href="{{ game?.website }}" target="_blank"> <span> Website</span>
+            <a class="game-tabs-link flex "  target="_blank"> <span> Website</span>
               <img class=" pl-2 h-6 text-white" src="../../../assets/images/website.svg" alt=""></a>
-                   </div>
-            </div>
-        </div>
-        
+                   </a>
+                          </div>
+                      </div>
+         </div>
       </div>
     </div>
        
 
     <app-game-tabs [game]="game" ></app-game-tabs>
+
+
+      <h1 class=" text-white text-lg text-center"> Similar Games</h1>
+        <div class=" flex flex-wrap gap-6 justify-center mx-16">
+               <div *ngFor="let game of games" class=" flex ">
+                  <app-similargamecard  [game]="game"  ></app-similargamecard>
+                </div>
+        </div>
+
+
+
+        
   </div>
   

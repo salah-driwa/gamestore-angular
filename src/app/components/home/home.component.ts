@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { APIResponse, Game } from 'src/app/models';
+import { APIResponse, Game, Geners } from 'src/app/models';
 
 import { HttpService } from 'src/app/services/http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,10 @@ export class HomeComponent {
 public currentpage=1;
  public isLoadingData = true ;
   search: any;
+public count: number ;
+public isNextPage: string;
+
+  public allGeners :Array<Geners> | undefined;
 
   public DisplayOption ="";
   
@@ -33,8 +38,12 @@ public currentpage=1;
   this.games = [];
  this.platform= '';
  this.genres = '';
+ this.count = 0;
+ this.isNextPage= '';
    // Initialize with an empty string or an appropriate default value
+  // all geners and platform
   
+
    }
    
 displayoption(option :string){
@@ -48,23 +57,59 @@ skeletonIndexes = Array.from({ length: 20 }, (_, index) => index);
 ngOnInit(): void{
   this.activatedRoute.params.subscribe((params:Params)=>{
     
-    if(params['game-search'] ){
+    if(params['game-search']  ){
       this.searchGames('metacrit',this.platform,this.genres,params['game-search'] ) ;
-      this.search =params['game-search'] ;     
+      this.search =params['game-search'] ; 
+      //console.log(params['game-search'] + " first condtion")    
     
     }else{
-      this.searchGames('metacrit');
+     
+      this.activatedRoute.queryParams.subscribe(params => {
+        if(params['genre'])
+         {this.genres = params['genre'];
+       //  console.log(params['game-search'] + " first condtion")
+         this.searchGames('metacrit',this.platform,this.genres);
+        }else{
+          this.searchGames('metacrit');
+        }
+    
+      });
     }
+    
+    
+   
    
   }
   )
-  //an
+  this.getallgeners();
+ // genre filter your game list
+  
+
 
 }
+
+getallgeners(){
+  this.gameSub = this.httpService.getgenersList()
+  .subscribe((gameList: APIResponse<Geners>) => {
+    this.allGeners=gameList.results
+    
+  });
+}
+
+
 
 generatePagesArray(): number[] {
-  return Array.from({ length: 9 }, (_, index) => this.currentpage + index);
+  const itemsPerPage = 20; // Adjust this value based on your requirement
+  const totalPages = Math.ceil(this.count / itemsPerPage);
+
+  // Ensure that the displayed page numbers don't exceed 9
+  const startPage = Math.max(1, this.currentpage - Math.floor(9 / 2));
+  const endPage = Math.min(totalPages, startPage + 8);
+
+  // Generate an array of page numbers
+  return Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
 }
+
 previewpage(){
   if(this.currentpage>1)
     {this.currentpage--;
@@ -77,10 +122,11 @@ previewpage(){
     
 
 nextpage(){
-  this.currentpage++;
+  if(this.isNextPage)
+   {this.currentpage++;
   this.isLoadingData = true ;
   this.searchGames(this.sort, this.platform, this.genres,this.search,this.currentpage.toString())
-  window.scrollTo({ top:300, behavior: 'smooth' });
+  window.scrollTo({ top:300, behavior: 'smooth' });}
 }
 
 
@@ -92,8 +138,9 @@ searchGames(sort: string, platform?: string, genres?: string, search?: string,cu
     .getGameList(sort, platform? platform : '', genres? genres : '', search? search : '' ,currentpage? currentpage :'1')
     .subscribe((gameList: APIResponse<Game>) => {
       this.games = gameList.results;
-    // console.log(this.games)
-    
+      this.count =gameList.count;
+      this.isNextPage=gameList.next;
+      //console.log(gameList.next)
     
    this.isLoadingData = false;
  
@@ -108,6 +155,7 @@ setpage(id:number){
 }
 openGameDetail(id:string):void{
   this.router.navigate(['details',id]);
+ 
 }
 
  ngOnDestroy():void{
@@ -123,5 +171,5 @@ openGameDetail(id:string):void{
 
  onSubmit(form:NgForm){
   this.router.navigate(['search', form.value.search])
-}
+  }
 }

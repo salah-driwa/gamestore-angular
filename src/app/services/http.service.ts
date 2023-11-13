@@ -2,8 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment as env } from 'src/environments/environment.prod';
-import { APIResponse, Game, Stores } from '../models';
-import { forkJoin, map } from 'rxjs';
+import { APIResponse, Game, Geners, Stores } from '../models';
+import { forkJoin, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,7 @@ export class HttpService {
     if (genres) {
       params = params.set('genres', genres);
     }
-    console.log(search)
+    //console.log(search)
     if (search){
       params = params.set('search', search);
     }
@@ -73,14 +73,42 @@ export class HttpService {
           })
         );
       }
-
+      
+      getSimilarGame(id: string): Observable<APIResponse<Game>> {
+        const url = `${env.BASE_URL}/games/${id}/game-series`;
+      
+        return this.http.get<APIResponse<Game>>(url).pipe(
+          tap((response: APIResponse<Game>) => {
+            console.log('Similar Games Response:', response);
+          })
+        );
+      }
+      getGameStore(id: string): Observable<APIResponse<Game>> {
+        const url = `${env.BASE_URL}/games/${id}/game-series`;
+      
+        return this.http.get<APIResponse<Game>>(url).pipe(
+          tap((response: APIResponse<Game>) => {
+            console.log('Similar Games Response:', response);
+          })
+        );
+      }
+      //this is to get stores 
       getstores() :Observable<APIResponse<Stores>> {
         let params = new HttpParams()
          return this.http.get<APIResponse<Stores>>(`${env.BASE_URL}/stores`, {
             params: params,
           });
       }
-     
-     
+       //this is to get generes  
+      getgenersList():Observable<APIResponse<Geners>> {
+        let params = new HttpParams()
+         return this.http.get<APIResponse<Geners>>(`${env.BASE_URL}/genres`, {
+            params: params,
+          });
+      }
+
+  //this is to get Platforms 
+
+      
    
 }

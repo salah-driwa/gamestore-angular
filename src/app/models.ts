@@ -25,13 +25,28 @@ export interface Game {
   
      hoverState: 'initial' | 'hovered';
       // Add this property
-
+     
 }
+
+export interface Geners { 
+    id: string,
+    name: string;
+    slug: string;
+    games_count: number;
+    image_background:string
+}
+
+
+
 export interface APIResponse<T> {
 
     results: Array<T>;
+    count: number;
+    next: string;
 }
+
 interface Genre {
+    id:string;
     name: string;
 }
 interface ParentPlatform{
