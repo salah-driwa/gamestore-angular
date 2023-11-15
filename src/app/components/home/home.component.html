@@ -125,11 +125,12 @@
     </div>
   </div>
 
+
 <div class=" flex   flex-wrap  justify-center    2xl:mx-10  pb-44"  [class.flex-col]="DisplayOption === 'option2'"    *ngIf="!isLoadingData"
 >
   
-    <ng-container *ngFor="let game of games "   class=""   >
-      <app-card  [game]="game" [openGameDetails]="openGameDetail" [router]="router" [display]="DisplayOption"></app-card>
+    <ng-container *ngFor="let game of games "   class=""   > 
+      <app-card  [game]="game" [openGameDetails]="openGameDetail" [router]="router" [display]="DisplayOption" [GameCollection]="collectiongame"></app-card>
           </ng-container>
 
    

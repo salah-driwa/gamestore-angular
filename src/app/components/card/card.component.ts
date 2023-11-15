@@ -1,7 +1,10 @@
-import { Component, Input, OnInit  } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges  } from '@angular/core';
 import { Game } from 'src/app/models';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Router } from '@angular/router';
+import { User } from 'firebase/auth';
+import { GameCollecionserviceService } from 'src/app/services/game-collecionservice.service';
+import { AuthenticationService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -27,29 +30,52 @@ export class CardComponent  implements OnInit{
   @Input() openGameDetails: ((id: string) => void ) =(id: string) => {};;
   @Input() router: Router | undefined;
   @Input() display: string | undefined ;
+  @Input() GameCollection:  any ;
   hoverState: 'initial' | 'hovered' = 'initial';
   zIndex = 0; // 
   currentScreenshotIndex: number = 0;
   public idType: string | undefined;
-
-
-
-    ngOnInit():void{
-
-    }
+  user: User | null = null;
+  gameData: {
+    gameId: string | undefined;
+    gameName: string  | undefined;
+    gameImage: string  | undefined;
+  } | undefined 
+  IsInCollection = false ;
+   
 
   // In your constructor or wherever appropriate
   
-  constructor() {
+  constructor(private authService: AuthenticationService , private gc:GameCollecionserviceService) {
+    
+  
     this.hoverState = 'initial';
   }
+  ngOnInit():void{
+    this.gameData={
+        gameId: this.game?.id,
+      gameName: this.game?.name,
+      gameImage: this.game?.background_image,
+      };
+      this.authService.onAuthStateChanged((user) => {
+        this.user = user;
+        
+      });
+    
+      //console.log(this.GameCollection?.some((game: any) => game.gameId === this.game?.id));
+      
+        
+    
+    }
+
+
+    
   // Other component logic
   onHover(game: Game) {
     game.hoverState = 'hovered';
     this.zIndex = 10;
-    // Set it to 'initial' in the constructor 
-   // console.log(`The type of game?.id is: ${typeof this.game?.id}`);
-
+    
+  
    
   }
 
@@ -64,6 +90,31 @@ export class CardComponent  implements OnInit{
     if (this.router) {
       this.router.navigate(['details', id]);
     }
-}
+  }
+  addtocollectiongame(){
+  
+    if(this.user)
+    {this.gc.createGame(this.user.uid,"",this.gameData)
+  console.log( this.user.uid)}
+  }
+  //delet the game from the collection
+  deletefromcollectiongame(){
 
+    if(this.user)
+    {if(this.game)
+      this.gc.deleteGame(this.user.uid,this.game?.id)
+  console.log( this.user.uid)}
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('GameCollection' in changes) {
+      // Update IsInCollection based on the new GameCollection
+      this.updateIsInCollection();
+    }
+  }
+
+  private updateIsInCollection(): void {
+    this.IsInCollection = (this.GameCollection?.some((game: any) => game.gameId === this.game?.id)) || false;
+  }
+
+    
 }

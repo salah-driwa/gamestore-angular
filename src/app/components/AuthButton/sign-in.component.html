@@ -1,0 +1,40 @@
+<!-- Add imports to your component if not already added -->
+<!-- import { MatMenuTrigger } from '@angular/material/menu'; -->
+<div class=" mx-3">
+<button mat-icon-button *ngIf="!user" (click)="openLoginDialog()" class="bg-primary text-black font-sans py-2 px-8 mx-3 rounded-md hover:bg-blue-500 hover:text-white my-auto">
+  <mat-icon>account_circle</mat-icon>
+</button>
+
+<!-- Add a menu trigger for the logout menu -->
+<div *ngIf="user" [matMenuTriggerFor]="menu" class=" cursor-pointer hover:bg-blue-200">
+<button   class=" text-black font-sans w-full  p-1 rounded-full  my-auto mx-auto">
+    <img *ngIf="user.photoURL" src="{{user.photoURL}}" alt=" user.photoURL" class="   h-10 rounded-full mx-auto">
+    
+    <i *ngIf="!user.photoURL" class="fa-solid fa-user   h-10 rounded-full mx-auto" style="color: #ffffff;"></i>
+</button>
+<div >
+  <p class="text-white">{{ user.displayName || user.email }}!</p>
+</div>
+
+</div>
+<!-- Add a menu with logout option -->
+<mat-menu #menu="matMenu" class=" bg-black"  style="background-color: #1d1414;">
+  <button mat-menu-item  (click)="openGameCollection()">
+    <i class="fa-solid fa-folder-closed" style="color: #ffffff;"></i>
+    <span>Collection</span>
+  </button>
+  <button mat-menu-item (click)="signOut()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </button>
+  
+</mat-menu>
+
+
+<p *ngIf="error">{{ error }}</p>
+
+<!-- Display user information -->
+
+
+
+</div>

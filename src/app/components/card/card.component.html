@@ -11,11 +11,11 @@
 [class.xl-w-10-12]="display === 'option2'"
 [class.xl:h-60]="display === 'option2'"
 [class.mx-auto]="display === 'option2'"
-(click)="openGamecardDetail(game?.id || '')"
+
 >
   <div   [class.flex]="display === 'option2'">
 
-      <div class="h-fit z-0 relative "  [class.w-72]="display === 'option2'">
+      <div class="h-fit z-0 relative "  (click)="openGamecardDetail(game?.id || '')" [class.w-72]="display === 'option2'">
         <!-- skeleton.component.html -->
         
              <img  [loading]="'lazy'" class="object-cover rounded-xl rounded-b-none h-52 w-full  z-0" *ngIf="game?.background_image && (game?.hoverState !== 'hovered' && display === 'option1') " [src]="game?.background_image" alt="thumbnail" />
@@ -44,13 +44,20 @@
     <div> 
       <div class="h-fit pt-5 pl-4 z-0 " [class.textandplatform]="display === 'option2'">
         <div class="flex mx-3 gap-5 my-2  z-0">
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-blue-600 absolute top-2 right-3" *ngIf="game?.hoverState === 'hovered'">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                </svg>
+          <div *ngIf="!IsInCollection" >
+            <button  class="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center space-x-2  absolute top-2 right-3" *ngIf="game?.hoverState === 'hovered'" (click)="addtocollectiongame()">
+              <i class="fa-regular fa-heart" style="color: #ffffff;"></i>
               
               </button>
-              
+             </div> 
+             <div *ngIf="IsInCollection" >
+              <button  class="bg-red-500 text-white px-4 py-2 rounded-md flex items-center space-x-2  absolute top-2 right-3" *ngIf="game?.hoverState === 'hovered'" (click)="deletefromcollectiongame()">
+                <i class="fa-solid fa-heart" style="color: #ffffff;"></i>
+                
+                </button>
+               </div> 
+
+
           <div *ngFor="let gamePlatform of game?.parent_platforms">
             <img src="assets/images/platforms/{{gamePlatform.platform.slug }}.svg" alt="Platform 1" class="w-4 h-4 " /> 
              

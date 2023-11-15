@@ -1,0 +1,14 @@
+
+
+<div class=" flex  gap-6">
+ <div class="  w-28 bg-slate-700 h-32" *ngFor="let game of games " >
+    <div>{{game.title}}</div>
+       
+            <img src="{{game?.gameImage}}" alt="" (click)="navigateToGameDetails(game.gameId)">
+
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="deleteGame(game.gameId)">
+                Button
+              </button>
+</div>
+ </div>

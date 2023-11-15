@@ -6,6 +6,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { AuthenticationService } from 'src/app/services/auth.service';
+import { GameCollecionserviceService } from 'src/app/services/game-collecionservice.service';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-home',
@@ -29,8 +32,10 @@ public isNextPage: string;
   public allGeners :Array<Geners> | undefined;
 
   public DisplayOption ="";
-  
- constructor(private httpService: HttpService,
+  user: User | null = null; 
+  error: any;
+  collectiongame: any;
+ constructor(private httpService: HttpService, private authService: AuthenticationService , private gc:GameCollecionserviceService,
   public router: Router,
   private activatedRoute: ActivatedRoute) {
     this.DisplayOption = localStorage.getItem('DisplayOption') || 'option1';
@@ -55,6 +60,7 @@ displayoption(option :string){
 skeletonIndexes = Array.from({ length: 20 }, (_, index) => index);
 
 ngOnInit(): void{
+  
   this.activatedRoute.params.subscribe((params:Params)=>{
     
     if(params['game-search']  ){
@@ -76,8 +82,6 @@ ngOnInit(): void{
       });
     }
     
-    
-   
    
   }
   )
@@ -85,6 +89,22 @@ ngOnInit(): void{
  // genre filter your game list
   
 
+ this.authService.onAuthStateChanged((user) => {
+  this.user = user;
+  if (this.user) {
+    this.gc.getGames(this.user.uid).subscribe(
+      (gamesData) => {
+        this.collectiongame = gamesData[0].games;
+        console.log(this.collectiongame);
+      },
+      (error) => {
+        this.error = error; // Handle any potential error
+        console.error('Error fetching games:', error);
+      }
+    );
+  }
+
+  });
 
 }
 
@@ -172,4 +192,16 @@ openGameDetail(id:string):void{
  onSubmit(form:NgForm){
   this.router.navigate(['search', form.value.search])
   }
+
+
+
+
+
+
+
+
+
+
+
+
 }
