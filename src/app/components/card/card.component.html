@@ -63,7 +63,7 @@
              
           </div>
         </div>
-        <p class="text-xl font-bold text-white cursor-pointer" >{{ game?.name  }} </p>
+        <p class="text-xl font-bold text-white cursor-pointer" (click)="openGamecardDetail(game?.id || '')" >{{ game?.name  }} </p>
       </div>
 
 
