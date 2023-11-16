@@ -1,4 +1,5 @@
 <!-- Add imports to your component if not already added -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <!-- import { MatMenuTrigger } from '@angular/material/menu'; -->
 <div class=" mx-3">
 <button mat-icon-button *ngIf="!user" (click)="openLoginDialog()" class="bg-primary text-black font-sans py-2 px-8 mx-3 rounded-md hover:bg-blue-500 hover:text-white my-auto">
@@ -20,7 +21,7 @@
 <!-- Add a menu with logout option -->
 <mat-menu #menu="matMenu" class=" bg-black"  style="background-color: #1d1414;">
   <button mat-menu-item  (click)="openGameCollection()">
-    <i class="fa-solid fa-folder-closed" style="color: #ffffff;"></i>
+    <i class="fa-solid fa-folder-closed" style="color: #393939;"></i>
     <span>Collection</span>
   </button>
   <button mat-menu-item (click)="signOut()">

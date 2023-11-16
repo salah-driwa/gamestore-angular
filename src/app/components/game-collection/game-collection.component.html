@@ -1,14 +1,29 @@
 
+<section class=" bg-background  min-h-screen">
+  
+<h1 class=" text-left text-2xl p-6 text-white "> Game Collection 1</h1>
 
-<div class=" flex  gap-6">
- <div class="  w-28 bg-slate-700 h-32" *ngFor="let game of games " >
-    <div>{{game.title}}</div>
-       
-            <img src="{{game?.gameImage}}" alt="" (click)="navigateToGameDetails(game.gameId)">
+<div class=" flex  gap-6    overflow-x-auto relative left-0 p-5 snap-x">
+  
+ <div class="  w-60   h-80  hover:duration-150 
+ hover:ease-in hover:translate-x-1 hover:scale-105  hover:shadow-2xl hover:shadow-[#ffffff]
+ 
+ bg-backgroundlight relative rounded-md  flex-shrink-0   snap-center" *ngFor="let game of games " >
+ <i class="fa-solid fa-trash absolute top-10 right-8 fa-xl z-10 hover:scale-105 hover:ease-in red-hover" (click)="deleteGame(game.gameId)" style="color: #ffffff;"></i>
+
+          <div class=" p-5">
+        
+            <img src="{{game?.gameImage}}" alt="" class="  object-cover   h-52  hover:brightness-110  hover:overflow-hidden brightness-75 z-0  rounded-md " (click)="navigateToGameDetails(game.gameId)">
+          </div>
+            <div class=" text-xl text-white font-medium text-center">{{game.title}}</div>
+          
+           
+            
+      
 
 
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="deleteGame(game.gameId)">
-                Button
-              </button>
-</div>
+             
+        </div>
  </div>
+
+</section>
