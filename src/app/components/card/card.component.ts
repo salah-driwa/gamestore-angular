@@ -95,7 +95,8 @@ export class CardComponent  implements OnInit{
   
     if(this.user)
     {this.gc.createGame(this.user.uid,"",this.gameData)
-  console.log( this.user.uid)}
+  //console.log( this.user.uid)
+}
   }
   //delet the game from the collection
   deletefromcollectiongame(){

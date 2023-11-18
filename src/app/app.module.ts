@@ -33,7 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 // auth firebase
 
 import { environment } from 'src/environments/environment';
-import { ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
+import { ScreenTrackingService, UserTrackingService, getAnalytics, provideAnalytics } from '@angular/fire/analytics';
 import { SignInComponent } from './components/AuthButton/sign-in.component';
 import { SigninPopupComponent } from './components/AuthButton/sign-in-popup/sign-in-popup.component';
 import { SignUPPopupComponent } from './components/AuthButton/sign-up-popup/sign-up-popup.component';
@@ -46,6 +46,12 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck } from '@angular/fire/app-check';
+import { getFunctions, provideFunctions } from '@angular/fire/functions';
+import { getMessaging, provideMessaging } from '@angular/fire/messaging';
+import { getPerformance, providePerformance } from '@angular/fire/performance';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
 
 @NgModule({
   declarations: [
@@ -86,6 +92,14 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
     provideDatabase(() => getDatabase()),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    provideFirebaseApp(() => initializeApp({"projectId":"gamestore-8ecaf","appId":"1:113195888999:web:96d0e11f81604fa5e6bfc2","storageBucket":"gamestore-8ecaf.appspot.com","apiKey":"AIzaSyAjD9LKBsvibGTtK7-3GBp0twQ7uxyGXLc","authDomain":"gamestore-8ecaf.firebaseapp.com","messagingSenderId":"113195888999","measurementId":"G-HSX6T6KW68"})),
+    provideAnalytics(() => getAnalytics()),
+   
+    provideFunctions(() => getFunctions()),
+    provideMessaging(() => getMessaging()),
+    providePerformance(() => getPerformance()),
+    provideStorage(() => getStorage()),
+    provideRemoteConfig(() => getRemoteConfig()),
   ],
   providers: [
     {

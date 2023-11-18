@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import * as firebase from 'firebase/compat';
 
 import { arrayRemove, arrayUnion, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-import { doc, collection } from 'firebase/firestore';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +18,9 @@ export class GameCollecionserviceService {
     // Fetch the existing data
     const docSnapshot = await getDoc(gameDocRef.ref);
     const existingData = docSnapshot.exists() ? (docSnapshot.data() as any) : {};
-
+    if (!docSnapshot.exists()) {
+      await setDoc(gameDocRef.ref, {});
+    }
     // Update the document with the new game data
     return updateDoc(gameDocRef.ref, {
       games: arrayUnion({
