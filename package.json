@@ -27,10 +27,8 @@
     "firebase": "^10.6.0",
     "firebase-tools": "^12.8.1",
     "font-awesome": "^4.7.0",
-    "framer-motion": "^10.16.4",
     "ng-animate": "^2.0.1",
     "ngx-skeleton-loader": "^8.1.0",
-    "react": "^18.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

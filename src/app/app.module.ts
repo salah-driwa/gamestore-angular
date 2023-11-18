@@ -33,11 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 // auth firebase
 
 import { environment } from 'src/environments/environment';
-
-
 import { ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
-import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck } from '@angular/fire/app-check';
-
 import { SignInComponent } from './components/AuthButton/sign-in.component';
 import { SigninPopupComponent } from './components/AuthButton/sign-in-popup/sign-in-popup.component';
 import { SignUPPopupComponent } from './components/AuthButton/sign-up-popup/sign-up-popup.component';
@@ -47,15 +43,9 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideAnalytics, getAnalytics } from '@angular/fire/analytics';
+
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
-import { provideFunctions, getFunctions } from '@angular/fire/functions';
-import { provideMessaging, getMessaging } from '@angular/fire/messaging';
-import { providePerformance, getPerformance } from '@angular/fire/performance';
-import { provideStorage, getStorage } from '@angular/fire/storage';
-import { provideRemoteConfig, getRemoteConfig } from '@angular/fire/remote-config';
-
 
 @NgModule({
   declarations: [
@@ -71,11 +61,7 @@ import { provideRemoteConfig, getRemoteConfig } from '@angular/fire/remote-confi
     SigninPopupComponent,
     SignUPPopupComponent,
     GameCollectionComponent,
-  
-
    
-
-
   ],
   imports: [
     BrowserModule,
@@ -86,10 +72,6 @@ import { provideRemoteConfig, getRemoteConfig } from '@angular/fire/remote-confi
     FormsModule,
     NgxSkeletonLoaderModule,
     MatPaginatorModule,
-    
-    
-   
-
     MatTabsModule,
     MatIconModule,
     MatInputModule,
@@ -99,17 +81,9 @@ import { provideRemoteConfig, getRemoteConfig } from '@angular/fire/remote-confi
     MatDialogModule,
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideFirestore(() => getFirestore()),
-    
+    provideFirestore(() => getFirestore()), 
     provideAuth(() => getAuth()),
-    provideAnalytics(() => getAnalytics()),
-
     provideDatabase(() => getDatabase()),
-    provideFunctions(() => getFunctions()),
-    provideMessaging(() => getMessaging()),
-    providePerformance(() => getPerformance()),
-    provideStorage(() => getStorage()),
-    provideRemoteConfig(() => getRemoteConfig()),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
   ],
