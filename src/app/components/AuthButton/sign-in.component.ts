@@ -26,7 +26,7 @@ export class SignInComponent {
       //Add 'implements OnInit' to the class.
       this.authService.onAuthStateChanged((user) => {
         this.user = user;
-        console.log( this.user)
+        //console.log( this.user)
       });
     }
   

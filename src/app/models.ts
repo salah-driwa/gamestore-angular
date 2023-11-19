@@ -36,6 +36,11 @@ export interface Geners {
     image_background:string
 }
 
+export interface AGameStores { 
+    id: string,
+    store_id: string;
+    url: string;
+}
 
 
 export interface APIResponse<T> {

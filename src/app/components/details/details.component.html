@@ -78,8 +78,16 @@
             <a class="game-tabs-link flex "  target="_blank"> <span> Website</span>
               <img class=" pl-2 h-6 text-white" src="../../../assets/images/website.svg" alt=""></a>
                    </a>
+                  
                           </div>
                       </div>
+                      <div class=" text-white font-bold text-left mt-5"> Stores </div>
+                      <div class=" flex justify-start  gap-4">
+                         <div *ngFor="let Store of Stores" c > 
+                      <a href="{{Store.url}}">
+                            <img src="../../../assets/images/Stores/{{Store.store_id}}.svg" class=" w-10  h-10 bg-white  rounded-md hover:scale-110 hover:ease-in hover:duration-100 mt-3" alt=" Store.store_id">
+                          </a> </div>
+                    </div>
          </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment as env } from 'src/environments/environment.prod';
-import { APIResponse, Game, Geners, Stores } from '../models';
+import { AGameStores, APIResponse, Game, Geners, Stores } from '../models';
 import { forkJoin, map, tap } from 'rxjs';
 
 @Injectable({
@@ -79,16 +79,29 @@ export class HttpService {
       
         return this.http.get<APIResponse<Game>>(url).pipe(
           tap((response: APIResponse<Game>) => {
-            console.log('Similar Games Response:', response);
+            //console.log('Similar Games Response:', response);
           })
         );
       }
+
+      // for each game 
+      getAvailableGameStores(id: string): Observable<APIResponse<AGameStores>> {
+        const url = `${env.BASE_URL}/games/${id}/stores`;
+      
+        return this.http.get<APIResponse<AGameStores>>(url).pipe(
+          tap((response: APIResponse<AGameStores>) => {
+            //console.log('Games stores Response:', response);
+          })
+        );
+      }
+
+
       getGameStore(id: string): Observable<APIResponse<Game>> {
         const url = `${env.BASE_URL}/games/${id}/game-series`;
       
         return this.http.get<APIResponse<Game>>(url).pipe(
           tap((response: APIResponse<Game>) => {
-            console.log('Similar Games Response:', response);
+            //console.log('Similar Games Response:', response);
           })
         );
       }
