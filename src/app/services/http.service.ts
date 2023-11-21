@@ -15,6 +15,17 @@ export class HttpService {
     
   }
  
+  getGameYoutubeTrailer( search: string ){
+    const channelId = 'UCJx5KP-pCUmL9eZUv-mIcNw'; // Replace with the actual channelId
+    const searchQuery = `${search} official launch trailer`;
+
+    const getGameYoutubeTrailerRequest = this.http.get(`${env.BASE_YT_URL}?q=${searchQuery}&key=${env.YoutubeKEY}`);
+ //console.log(getGameYoutubeTrailerRequest);
+    return getGameYoutubeTrailerRequest;
+  
+  }
+
+
 
   getGameList(
     ordering: string,
@@ -24,15 +35,13 @@ export class HttpService {
     currentpage:string,
   ): Observable<APIResponse<Game>> {
     let params = new HttpParams()
-  .set('ordering', ordering).set('metacritic', '60,100').set('page',currentpage) ;
+  .set('ordering', ordering).set('metacritic', '0,100').set('page',currentpage) ;
 
-  
-    
     
     if (platform) {
       params = params.set('parent_platforms', platform);
     }
-    
+
     if (genres) {
       params = params.set('genres', genres);
     }

@@ -87,8 +87,14 @@
                       <a href="{{Store.url}}">
                             <img src="../../../assets/images/Stores/{{Store.store_id}}.svg" class=" w-10  h-10 bg-white  rounded-md hover:scale-110 hover:ease-in hover:duration-100 mt-3" alt=" Store.store_id">
                           </a> </div>
+                        
+             
                     </div>
-         </div>
+                    <div class=" text-white text-3xl font-bold text-center mt-10 "> Game Trailer </div>
+                    <div class="  w-full">
+                      <iframe class=" mx-auto my-6" *ngIf="Trailer" width="560" height="315" [src]="Trailer" frameborder="0" allowfullscreen></iframe>
+                     </div> 
+                     </div>
       </div>
     </div>
        
