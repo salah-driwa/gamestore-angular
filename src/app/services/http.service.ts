@@ -16,10 +16,10 @@ export class HttpService {
   }
  
   getGameYoutubeTrailer( search: string ){
-    const channelId = 'UCJx5KP-pCUmL9eZUv-mIcNw'; // Replace with the actual channelId
-    const searchQuery = `${search} official launch trailer`;
+   
+   // const searchQuery = `${search} official launch trailer`;
 
-    const getGameYoutubeTrailerRequest = this.http.get(`${env.BASE_YT_URL}?q=${searchQuery}&key=${env.YoutubeKEY}`);
+    const getGameYoutubeTrailerRequest = this.http.get(`${env.BASE_YT_URL}?title=${search}`);
  //console.log(getGameYoutubeTrailerRequest);
     return getGameYoutubeTrailerRequest;
   

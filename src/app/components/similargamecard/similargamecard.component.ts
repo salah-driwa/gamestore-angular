@@ -22,10 +22,20 @@ export class SimilargamecardComponent {
 
 
 
-  openGamecardDetail(id:string):void{
+  openGamecardDetail(id:string, event: MouseEvent):void{
+    const isCtrlPressed = event.ctrlKey || event.metaKey;
+
     if (this.router) {
-      this.router.navigate(['details', id]);
+      if (isCtrlPressed) {
+        // Open in a new tab
+        window.open(`/details/${id}`, '_blank');
+      } else {
+        // Open normally
+        this.router.navigate(['/details', id]);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
-    window.scrollTo({ top:0, behavior: 'smooth' });
+   
+  
 }
 }

@@ -50,8 +50,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.httpService
     .getGameYoutubeTrailer(gamename).subscribe((Youtuberequest: any)=>{
       //this.Trailer=Youtuberequest.items[0].id.videoId
-      this.setTrailerUrl(Youtuberequest.items[0].id.videoId);
-      console.log(this.Trailer);
+      this.setTrailerUrl(Youtuberequest[0].snippet.resourceId.videoId);
+      console.log(Youtuberequest[0].snippet.resourceId.videoId);
     });
 
 
