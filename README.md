@@ -1,27 +1,36 @@
-# Videogamedb
+# Game Store
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+Game Store is an eCommerce platform dedicated to gaming enthusiasts, allowing users to browse, purchase, and manage their favorite games. This project features a modern and user-friendly interface, ensuring a seamless shopping experience.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Product Listings:** Browse through a wide selection of games with detailed descriptions and images.
+- **Shopping Cart:** Easily add and manage products in the shopping cart.
+- **User Authentication:** Secure user authentication for account management and order tracking.
+- **Admin Dashboard:** Admin interface for managing products, orders, and user data.
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Frontend:** Built with Angular for a dynamic and responsive user interface.
+- **Backend:** Utilizes Firebase for real-time data management and user authentication.
+- **Styling:** Implemented modern CSS techniques for a sleek and visually appealing design.
 
-## Build
+## Live Demo
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Experience the live version of the project here: [Game Store Live](https://gamesstore-angular.netlify.app/)
 
-## Running unit tests
+## Screenshots
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Product Listings
+![Product Listings](https://cdn.dribbble.com/userupload/10197915/file/original-54d09f49bd7ac66da46995a5ff1ab7ce.png?resize=1024x768&vertical=center)
 
-## Running end-to-end tests
+### Shopping Cart
+![Shopping Cart](https://cdn.dribbble.com/userupload/10197915/file/original-54d09f49bd7ac66da46995a5ff1ab7ce.png?resize=1024x768&vertical=center)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Installation
 
-## Further help
+To run this project locally, follow these steps:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Clone the repository:
+   ```bash
+   git clone [repository-url]
